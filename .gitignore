@@ -4,6 +4,7 @@
 
 # Auto generated files
 /coverage
+package-lock.json
 
 # NPM packages
 node_modules
