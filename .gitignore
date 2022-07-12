@@ -4,6 +4,7 @@
 
 # Auto generated files
 /coverage
+dist
 
 # NPM packages
 node_modules
