@@ -1,6 +1,11 @@
-const BreinifyGlobalConfigs = {} as { apiKey?: string; secret?: string };
+type ConfigProps = {
+	apiKey?: string;
+	secret?: string;
+};
 
-export function BreinifySetup(apiKey: string, secret: string) {
+const BreinifyGlobalConfigs = {} as ConfigProps;
+
+export function BreinifySetup({ apiKey, secret }: ConfigProps) {
 	BreinifyGlobalConfigs.apiKey = apiKey;
 	BreinifyGlobalConfigs.secret = secret;
 }
