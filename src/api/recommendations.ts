@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API, RECOMMENDATION } from '../configs';
-import { BreinifyGlobalConfigs } from 'src/setup';
+import { BreinifyGlobalConfigs } from '../setup';
 
 const URL = `${API}/${RECOMMENDATION}`;
 
