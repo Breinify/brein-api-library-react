@@ -1,11 +1,11 @@
 export interface User {
-	phone?: string;
 	email?: string;
+	phone?: string;
+	sessionId?: string;
 	userId?: string;
 	identifiers?: {
 		browserId: string;
 	};
-	sessionId?: string;
 	additional?: UserAdditionalData;
 }
 
@@ -15,36 +15,36 @@ export interface UserAdditionalData {
 		assignedGroup?: string;
 		originalSessionId?: string;
 	};
+	localDateTime?: string;
 	location?: {
 		storeId?: number;
 	};
+	timezone?: string;
 	userAgent?: string;
 	url?: string;
-	timezone?: string;
-	localDateTime?: string;
 }
 
 export interface Recommendation {
-	recommendationQueryName?: string;
-	recommendationDisableFilters?: boolean;
-	recommendationRemoveDuplicates?: boolean;
+	namedRecommendations?: Array<string>;
 	numRecommendations?: number;
-	recommendationSubRecommenders?: Array<string>;
-	recommendationForItems?: Array<string>;
+	queryPostProcessors?: Array<string>;
 	recommendationAdditionalParameters?: RecommendationAdditionalParameters;
+	recommendationAtTime?: number;
 	recommendationCategories?: Array<string>;
 	recommendationCategoriesBlacklist?: Array<string>;
-	namedRecommendations?: Array<string>;
-	recommendationAtTime?: number;
-	queryPostProcessors?: Array<string>;
+	recommendationDisableFilters?: boolean;
+	recommendationForItems?: Array<string>;
 	recommendationMinQuantity?: number;
+	recommendationQueryName?: string;
+	recommendationRemoveDuplicates?: boolean;
 	recommendationSubBlockers?: Array<string>;
 	recommendationSubInhibitors?: Array<string>;
+	recommendationSubRecommenders?: Array<string>;
 }
 
 export interface DataTags {
 	atStore?: string;
-	deviceType?: string;
+	deviceType?: 'Bot' | 'Personal computer' | 'Smartphone' | Omit<string, 'Bot' | 'Personal computer' | 'Smartphone'>;
 }
 
 export interface CuratedLists {
@@ -52,14 +52,14 @@ export interface CuratedLists {
 }
 
 export interface RecommendationAdditionalParameters {
-	selectedModels?: Array<string>;
 	customSorterTypes?: Array<string>;
-	dataTagsToConsider?: Array<string>;
 	dataTags?: DataTags;
+	dataTagsToConsider?: Array<keyof DataTags | Omit<string, keyof DataTags>>;
 	ignoreRecommendations?: boolean;
-	postProcessors?: Array<string>;
 	manual?: CuratedLists;
 	numRecommendationsInternal?: number;
+	postProcessors?: Array<string>;
+	selectedModels?: Array<string>;
 	temporalTypes?: Array<string>;
 }
 
