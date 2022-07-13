@@ -10,6 +10,7 @@
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
 		"esModuleInterop": true,
-		"baseUrl": "."
-	}
+		"baseUrl": "./",
+	},
+//	"include": ["src"]
 }
