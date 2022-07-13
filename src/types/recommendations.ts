@@ -1,4 +1,8 @@
-export interface User {
+interface GenericProperties {
+	[key: string]: any;
+}
+
+export interface User extends GenericProperties {
 	email?: string;
 	phone?: string;
 	sessionId?: string;
@@ -9,7 +13,7 @@ export interface User {
 	additional?: UserAdditionalData;
 }
 
-export interface UserAdditionalData {
+export interface UserAdditionalData extends GenericProperties {
 	identifiers?: {
 		browserId?: string;
 		assignedGroup?: string;
@@ -24,7 +28,7 @@ export interface UserAdditionalData {
 	url?: string;
 }
 
-export interface Recommendation {
+export interface Recommendation extends GenericProperties {
 	namedRecommendations?: Array<string>;
 	numRecommendations?: number;
 	queryPostProcessors?: Array<string>;
@@ -42,16 +46,16 @@ export interface Recommendation {
 	recommendationSubRecommenders?: Array<string>;
 }
 
-export interface DataTags {
+export interface DataTags extends GenericProperties {
 	atStore?: string;
 	deviceType?: 'Bot' | 'Personal computer' | 'Smartphone' | Omit<string, 'Bot' | 'Personal computer' | 'Smartphone'>;
 }
 
-export interface CuratedLists {
+export interface CuratedLists extends GenericProperties {
 	specifiedLists: Array<string>;
 }
 
-export interface RecommendationAdditionalParameters {
+export interface RecommendationAdditionalParameters extends GenericProperties {
 	customSorterTypes?: Array<string>;
 	dataTags?: DataTags;
 	dataTagsToConsider?: Array<keyof DataTags | Omit<string, keyof DataTags>>;
@@ -63,7 +67,7 @@ export interface RecommendationAdditionalParameters {
 	temporalTypes?: Array<string>;
 }
 
-interface BaseRecommendationQuery {
+interface BaseRecommendationQuery extends GenericProperties {
 	unixTimestamp?: number;
 	user?: User;
 	signature?: string | null;
@@ -71,9 +75,11 @@ interface BaseRecommendationQuery {
 
 interface SingleRecommendationQuery extends BaseRecommendationQuery {
 	recommendation: Recommendation;
+	recommendations?: never;
 }
 
 interface MultipleRecommendationQuery extends BaseRecommendationQuery {
+	recommendation?: never;
 	recommendations: Array<Recommendation>;
 }
 
