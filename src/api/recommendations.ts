@@ -1,28 +1,28 @@
 import axios from 'axios';
 import { API, RECOMMENDATION } from '../configs';
 import { BreinifyGlobalConfigs } from '../setup';
+import { isSetupComplete } from '../utils';
 
 const URL = `${API}/${RECOMMENDATION}`;
+const INIT_ERROR = 'Please complete library initialization: BreinifySetup';
 
 export function getRecommendations() {
+	if (!isSetupComplete()) throw INIT_ERROR;
+
+	const data = {
+		apiKey: BreinifyGlobalConfigs.apiKey,
+		secret: BreinifyGlobalConfigs.secret,
+		unixTimestamp: 1657152522,
+		recommendation: {},
+	};
 	console.log('URL: ', URL);
-	axios
-		.post(URL, {
-			apiKey: 'DF2E-9255-2433-4FB5-839A-A402-8640-A37E',
-			unixTimestamp: 1657152522,
-			recommendation: {
-				recommendationCategories: ['occasion_fall'],
-			},
-		})
+	console.log('data: ', data);
+	return axios
+		.post(URL, data)
 		.then((response) => {
 			console.log('response : ', response);
 		})
 		.catch((error) => {
 			console.log('error : ', error);
 		});
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			resolve(BreinifyGlobalConfigs);
-		}, 2000);
-	});
 }
