@@ -8,10 +8,10 @@ import { RECOMMENDATION_URL } from '../configs';
 // UTILS
 import { isSetupComplete } from '../utils';
 
-const INIT_ERROR = 'Please complete library initialization: BreinifySetup';
+const INIT_ERROR_MESSAGE = 'Please complete library initialization: BreinifySetup';
 
 export function getRecommendations() {
-	if (!isSetupComplete()) throw INIT_ERROR;
+	if (!isSetupComplete()) throw INIT_ERROR_MESSAGE;
 
 	const data = {
 		apiKey: BreinifyGlobalConfigs.apiKey,
