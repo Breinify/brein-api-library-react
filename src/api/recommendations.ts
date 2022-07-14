@@ -1,9 +1,13 @@
+// PACKAGE
 import axios from 'axios';
-import { API, RECOMMENDATION } from '../configs';
+
+// CONFIGS
 import { BreinifyGlobalConfigs } from '../setup';
+import { RECOMMENDATION_URL } from '../configs';
+
+// UTILS
 import { isSetupComplete } from '../utils';
 
-const URL = `${API}/${RECOMMENDATION}`;
 const INIT_ERROR = 'Please complete library initialization: BreinifySetup';
 
 export function getRecommendations() {
@@ -15,14 +19,9 @@ export function getRecommendations() {
 		unixTimestamp: 1657152522,
 		recommendation: {},
 	};
-	console.log('URL: ', URL);
-	console.log('data: ', data);
-	return axios
-		.post(URL, data)
-		.then((response) => {
-			console.log('response : ', response);
-		})
-		.catch((error) => {
-			console.log('error : ', error);
-		});
+	return axios.post(RECOMMENDATION_URL, data).then((response) => {
+		const { data, status } = response;
+		if (status === 200) return data;
+		throw data;
+	});
 }

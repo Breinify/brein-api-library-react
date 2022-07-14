@@ -1,3 +1,5 @@
-export const API = 'http://www.api.breinify.com';
+const API = 'https://api.breinify.com';
 
-export const RECOMMENDATION = 'recommendation';
+const RECOMMENDATION = 'recommendation';
+
+export const RECOMMENDATION_URL = `${API}/${RECOMMENDATION}`;
