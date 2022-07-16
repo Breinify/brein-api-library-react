@@ -1,3 +1,5 @@
+import { IConfig } from './';
+
 interface GenericProperties {
 	[key: string]: any;
 }
@@ -67,7 +69,7 @@ export interface RecommendationAdditionalParameters extends GenericProperties {
 	temporalTypes?: Array<string>;
 }
 
-interface BaseRecommendationQuery extends GenericProperties {
+interface BaseRecommendationQuery extends GenericProperties, IConfig {
 	unixTimestamp?: number;
 	user?: User;
 	signature?: string | null;

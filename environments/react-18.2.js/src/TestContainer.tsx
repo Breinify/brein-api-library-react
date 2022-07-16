@@ -10,7 +10,7 @@ export function TestContainer() {
 	const [value, setValue] = useState<any>({});
 
 	function getCall() {
-		getRecommendations()
+		getRecommendations({ recommendation: { numRecommendations: 10 } })
 			.then((response: any) => {
 				console.log('response: ', response);
 				setValue(response);
