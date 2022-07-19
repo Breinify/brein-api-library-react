@@ -7,5 +7,5 @@ export const enum STATUS {
 
 export type LoadingState = {
 	status: STATUS;
-	reason: any;
+	reason: object | string;
 };

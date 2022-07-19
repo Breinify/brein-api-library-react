@@ -9,10 +9,12 @@ BreinifySetup({ apiKey, secret });
 export function TestContainer() {
 	const { getRecs, data, isLoading, isSuccess, isFailure, error } = useRecommendations({});
 
+	function onButton() {
+		getRecs({ recommendation: {} });
+	}
+
 	useEffect(() => {
-		setTimeout(() => {
-			getRecs({ recommendation: { numRecommendations: 10 } });
-		}, 1000);
+		getRecs({ recommendation: { numRecommendations: 10 } });
 	}, []);
 
 	console.log('data, isLoading, isSuccess, isFailure, error: ', { data, isLoading, isSuccess, isFailure, error });
@@ -22,6 +24,7 @@ export function TestContainer() {
 			{isLoading && <div>LOADING</div>}
 			{isSuccess && <>{JSON.stringify(data, null, 2)}</>}
 			{isFailure && <>{error}</>}
+			<button onClick={onButton}>Click Here</button>
 		</div>
 	);
 }
