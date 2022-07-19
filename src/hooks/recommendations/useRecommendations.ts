@@ -1,6 +1,6 @@
 import { getRecommendations } from '../../api';
 import { RecommendationQuery } from '../../types';
-import { useLoader } from 'src/hooks/helpers';
+import { useLoader } from '../../hooks/helpers';
 import { STATUS } from '../../types/common';
 
 export const useRecommendations = <T = any>(defaultDataState: any = null) => {

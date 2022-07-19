@@ -1,4 +1,4 @@
-import { requiredSetup } from 'src/setup';
+import { requiredSetup } from '../setup';
 
 export interface IConfig {
 	apiKey?: string;
