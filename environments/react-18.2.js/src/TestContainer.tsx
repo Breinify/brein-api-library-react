@@ -7,14 +7,21 @@ const secret = process.env.REACT_APP_SECRET;
 BreinifySetup({ apiKey, secret });
 
 export function TestContainer() {
-	const [value, setValue] = useState<any>({});
-	const { getRecs, data, isLoading, isSuccess, isFailure, error } = useRecommendations();
+	const { getRecs, data, isLoading, isSuccess, isFailure, error } = useRecommendations({});
 
 	useEffect(() => {
-		getRecs({ recommendation: { numRecommendations: 10 } });
+		setTimeout(() => {
+			getRecs({ recommendation: { numRecommendations: 10 } });
+		}, 1000);
 	}, []);
 
 	console.log('data, isLoading, isSuccess, isFailure, error: ', { data, isLoading, isSuccess, isFailure, error });
 
-	return <div>{JSON.stringify(value, null, 2)}</div>;
+	return (
+		<div>
+			{isLoading && <div>LOADING</div>}
+			{isSuccess && <>{JSON.stringify(data, null, 2)}</>}
+			{isFailure && <>{error}</>}
+		</div>
+	);
 }

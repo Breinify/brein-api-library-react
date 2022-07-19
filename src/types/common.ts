@@ -4,3 +4,8 @@ export const enum STATUS {
 	FAILURE = 'FAILURE',
 	REFETCH = 'REFETCH',
 }
+
+export type LoadingState = {
+	status: STATUS;
+	reason: any;
+};
