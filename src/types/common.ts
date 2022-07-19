@@ -1,0 +1,6 @@
+export const enum STATUS {
+	SUCCESS = 'SUCCESS',
+	REQUESTING = 'REQUESTING',
+	FAILURE = 'FAILURE',
+	REFETCH = 'REFETCH',
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BreinifySetup, getRecommendations } from 'brein-api-library-react';
+import { BreinifySetup, getRecommendations, useRecommendations } from 'brein-api-library-react';
 
 const apiKey = process.env.REACT_APP_API_KEY || '';
 const secret = process.env.REACT_APP_SECRET;
@@ -8,21 +8,13 @@ BreinifySetup({ apiKey, secret });
 
 export function TestContainer() {
 	const [value, setValue] = useState<any>({});
-
-	function getCall() {
-		getRecommendations({ recommendation: { numRecommendations: 10 } })
-			.then((response: any) => {
-				console.log('response: ', response);
-				setValue(response);
-			})
-			.catch((error: any) => {
-				console.log('error: ', error);
-			});
-	}
+	const { getRecs, data, isLoading, isSuccess, isFailure, error } = useRecommendations();
 
 	useEffect(() => {
-		getCall();
+		getRecs({ recommendation: { numRecommendations: 10 } });
 	}, []);
+
+	console.log('data, isLoading, isSuccess, isFailure, error: ', { data, isLoading, isSuccess, isFailure, error });
 
 	return <div>{JSON.stringify(value, null, 2)}</div>;
 }

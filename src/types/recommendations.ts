@@ -77,11 +77,9 @@ interface BaseRecommendationQuery extends GenericProperties, IConfig {
 
 interface SingleRecommendationQuery extends BaseRecommendationQuery {
 	recommendation: Recommendation;
-	recommendations?: never;
 }
 
 interface MultipleRecommendationQuery extends BaseRecommendationQuery {
-	recommendation?: never;
 	recommendations: Array<Recommendation>;
 }
 
