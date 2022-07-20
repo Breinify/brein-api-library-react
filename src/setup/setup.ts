@@ -1,11 +1,5 @@
-interface IConfig {
-	apiKey?: string;
-	secret?: string;
-}
-
-type RequiredProperties = keyof typeof requiredSetup;
-type RequiredPickConfig = Required<Pick<IConfig, RequiredProperties>>;
-type SetupProps = IConfig & RequiredPickConfig;
+// TYPES
+import { IConfig, SetupProps } from '../types';
 
 // Required keys needed to initialize BreinifyGlobalConfigs
 export const requiredSetup = {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BreinifySetup, getRecommendations } from 'brein-api-library-react';
+import { BreinifySetup, getRecommendations, useRecommendations } from 'brein-api-library-react';
 
 const apiKey = process.env.REACT_APP_API_KEY || '';
 const secret = process.env.REACT_APP_SECRET;
@@ -7,22 +7,24 @@ const secret = process.env.REACT_APP_SECRET;
 BreinifySetup({ apiKey, secret });
 
 export function TestContainer() {
-	const [value, setValue] = useState<any>({});
+	const { getRecs, data, isLoading, isSuccess, isFailure, error } = useRecommendations({});
 
-	function getCall() {
-		getRecommendations()
-			.then((response: any) => {
-				console.log('response: ', response);
-				setValue(response);
-			})
-			.catch((error: any) => {
-				console.log('error: ', error);
-			});
+	function onButton() {
+		getRecs({ recommendation: {} });
 	}
 
 	useEffect(() => {
-		getCall();
+		getRecs({ recommendation: { numRecommendations: 10 } });
 	}, []);
 
-	return <div>{JSON.stringify(value, null, 2)}</div>;
+	console.log('data, isLoading, isSuccess, isFailure, error: ', { data, isLoading, isSuccess, isFailure, error });
+
+	return (
+		<div>
+			{isLoading && <div>LOADING</div>}
+			{isSuccess && <>{JSON.stringify(data, null, 2)}</>}
+			{isFailure && <>{error}</>}
+			<button onClick={onButton}>Click Here</button>
+		</div>
+	);
 }
