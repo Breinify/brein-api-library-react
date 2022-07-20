@@ -1,4 +1,3 @@
-// PACKAGE
 import axios from 'axios';
 
 // CONFIGS
@@ -7,6 +6,8 @@ import { RECOMMENDATION_URL } from '../configs';
 
 // UTILS
 import { isSetupComplete } from '../utils';
+
+// TYPES
 import { RecommendationQuery } from '../types';
 
 const INIT_ERROR_MESSAGE = 'Please complete library initialization: BreinifySetup';

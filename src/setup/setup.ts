@@ -1,3 +1,4 @@
+// TYPES
 import { IConfig, SetupProps } from '../types';
 
 // Required keys needed to initialize BreinifyGlobalConfigs

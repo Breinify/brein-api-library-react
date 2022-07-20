@@ -1,8 +1,13 @@
-import { getRecommendations } from '../../api';
-import { RecommendationQuery } from '../../types';
-import { useLoader } from '../../hooks/helpers';
-import { STATUS } from '../../types/common';
 import { useCallback } from 'react';
+
+// HOOKS
+import { useLoader } from '../../hooks/helpers';
+
+// TYPES
+import { RecommendationQuery, STATUS } from '../../types';
+
+// COMPONENTS
+import { getRecommendations } from '../../api';
 
 export const useRecommendations = <T = any>(defaultDataState: any = null) => {
 	const { loadingStatus, data, setLoading, setSuccess, setError } = useLoader(undefined, defaultDataState);
