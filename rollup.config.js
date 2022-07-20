@@ -10,9 +10,9 @@ const PLUGINS = [
 	external(),
 	resolve({ jsnext: true, preferBuiltins: true, browser: true }),
 	commonjs(),
-	typescript({ tsconfig: './tsconfig.json' }),
+	typescript({ tsconfig: './tsconfig.json', exclude: ['./environments/**'] }),
 	json(),
-	visualizer({ filename: './docs/visualizer.html' }),
+	visualizer({ filename: 'visualizer.html' }),
 ];
 
 const pkg = require('./package.json');
@@ -33,4 +33,5 @@ export default {
 		},
 	],
 	plugins: [...PLUGINS, terser()],
+	external: ['react', 'react-dom'],
 };

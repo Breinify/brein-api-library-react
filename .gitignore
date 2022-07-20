@@ -9,4 +9,7 @@ dist
 # NPM packages
 node_modules
 
+# Visualizer
+visualizer.html
+
 .env
