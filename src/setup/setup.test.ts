@@ -39,66 +39,37 @@ describe('Setup functions', () => {
 		expect(() => Setup.BreinifySetup(undefined as any)).toThrow();
 	});
 
-	it('invalid apiKey: array', () => {
+	it('invalid apiKey', () => {
 		const Setup = require('./setup');
-		const API_KEY = ['hello'];
+		const ARRAY = ['hello'];
+		const NUMBER = 123;
+		const OBJECT = { hello: 1 };
 
-		expect(() => Setup.BreinifySetup({ apiKey: API_KEY } as any)).toThrow();
+		expect(() => Setup.BreinifySetup({ apiKey: ARRAY } as any)).toThrow();
+		expect(() => Setup.BreinifySetup({ apiKey: NUMBER } as any)).toThrow();
+		expect(() => Setup.BreinifySetup({ apiKey: OBJECT } as any)).toThrow();
 	});
 
-	it('invalid apiKey: number', () => {
-		const Setup = require('./setup');
-		const API_KEY = 123;
-
-		expect(() => Setup.BreinifySetup({ apiKey: API_KEY } as any)).toThrow();
-	});
-
-	it('invalid apiKey: object', () => {
-		const Setup = require('./setup');
-		const API_KEY = { hello: 1 };
-
-		expect(() => Setup.BreinifySetup({ apiKey: API_KEY } as any)).toThrow();
-	});
-
-	it('valid apiKey, invalid secret: array', () => {
+	it('valid apiKey, invalid secret', () => {
 		const Setup = require('./setup');
 		const API_KEY = 'API_KEY';
-		const SECRET = ['hello'];
+		const ARRAY = ['hello'];
+		const NUMBER = 123;
+		const OBJECT = { hello: 1 };
 
-		expect(() => Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET } as any)).toThrow();
+		expect(() => Setup.BreinifySetup({ apiKey: API_KEY, secret: ARRAY } as any)).toThrow();
+		expect(() => Setup.BreinifySetup({ apiKey: API_KEY, secret: NUMBER } as any)).toThrow();
+		expect(() => Setup.BreinifySetup({ apiKey: API_KEY, secret: OBJECT } as any)).toThrow();
 	});
 
-	it('valid apiKey, invalid secret: number', () => {
+	it('incorrect param', () => {
 		const Setup = require('./setup');
-		const API_KEY = 'API_KEY';
-		const SECRET = 123;
+		const STRING = 'hello';
+		const ARRAY = ['hello'];
+		const NUMBER = 123;
 
-		expect(() => Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET } as any)).toThrow();
-	});
-
-	it('valid apiKey, invalid secret: object', () => {
-		const Setup = require('./setup');
-		const API_KEY = 'API_KEY';
-		const SECRET = { hello: 1 };
-
-		expect(() => Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET } as any)).toThrow();
-	});
-
-	it('incorrect param: string', () => {
-		const Setup = require('./setup');
-
-		expect(() => Setup.BreinifySetup('hello' as any)).toThrow();
-	});
-
-	it('incorrect param: number', () => {
-		const Setup = require('./setup');
-
-		expect(() => Setup.BreinifySetup(123 as any)).toThrow();
-	});
-
-	it('incorrect param: array', () => {
-		const Setup = require('./setup');
-
-		expect(() => Setup.BreinifySetup([] as any)).toThrow();
+		expect(() => Setup.BreinifySetup(STRING as any)).toThrow();
+		expect(() => Setup.BreinifySetup(ARRAY as any)).toThrow();
+		expect(() => Setup.BreinifySetup(NUMBER as any)).toThrow();
 	});
 });
