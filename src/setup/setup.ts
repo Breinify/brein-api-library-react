@@ -17,3 +17,8 @@ export function BreinifySetup({ apiKey, secret }: SetupProps): void {
 	BreinifyGlobalConfigs.apiKey = apiKey;
 	BreinifyGlobalConfigs.secret = secret;
 }
+
+// Checks if BreinifySetup is complete
+export function isSetupComplete() {
+	return Object.keys(requiredSetup).every((value) => value in BreinifyGlobalConfigs);
+}

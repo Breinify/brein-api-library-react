@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 // CONFIGS
-import { BreinifyGlobalConfigs } from '../setup';
 import { RECOMMENDATION_URL } from '../configs';
 
-// UTILS
-import { isSetupComplete } from '../utils';
+// SETUP
+import { BreinifyGlobalConfigs, isSetupComplete } from '../setup';
 
 // TYPES
 import { RecommendationQuery } from '../types';
