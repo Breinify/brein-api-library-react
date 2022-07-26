@@ -10,21 +10,21 @@ export const useLoader = (defaultStatus: STATUS = STATUS.REQUESTING, defaultData
 	const setLoading = useCallback(
 		(isRefetch = false, shouldClearData = false) => {
 			setLoadingStatus({ status: isRefetch ? STATUS.REFETCH : STATUS.REQUESTING, reason: '' });
-			if (shouldClearData) setData(null);
+			if (shouldClearData) setData(defaultDataState);
 		},
 		[setLoadingStatus]
 	);
 	const setSuccess = useCallback(
-		(data: any) => {
+		(data: any = defaultDataState) => {
 			setData(data);
 			setLoadingStatus({ status: STATUS.SUCCESS, reason: '' });
 		},
 		[setLoadingStatus, setData]
 	);
 	const setError = useCallback(
-		(reason: any, shouldClearData = false) => {
+		(reason: any = '', shouldClearData = false) => {
 			setLoadingStatus({ status: STATUS.FAILURE, reason });
-			if (shouldClearData) setData(null);
+			if (shouldClearData) setData(defaultDataState);
 		},
 		[setLoadingStatus, setData]
 	);

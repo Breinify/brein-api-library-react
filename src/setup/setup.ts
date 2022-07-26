@@ -3,7 +3,7 @@ import { IConfig, SetupProps } from '../types';
 import { isString } from '../utils';
 
 // Required keys needed to initialize BreinifyGlobalConfigs
-const requiredSetup = {
+export const requiredSetup = {
 	apiKey: 'apiKey',
 };
 
