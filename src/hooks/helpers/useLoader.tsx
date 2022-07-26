@@ -3,7 +3,7 @@ import { useState, useCallback } from 'react';
 // TYPES
 import { LoadingState, STATUS } from '../../types';
 
-export const useLoader = (defaultStatus: STATUS = STATUS.REQUESTING, defaultDataState: any = null) => {
+export const useLoader = (defaultStatus: STATUS = STATUS.INIT, defaultDataState: any = null) => {
 	const [loadingStatus, setLoadingStatus] = useState<LoadingState>({ status: defaultStatus, reason: '' });
 	const [data, setData] = useState(defaultDataState);
 

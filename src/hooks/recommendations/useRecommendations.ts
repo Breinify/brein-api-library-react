@@ -27,6 +27,7 @@ export const useRecommendations = <T = any>(defaultDataState: any = null) => {
 	return {
 		getRecs,
 		data,
+		isInit: loadingStatus.status === STATUS.INIT,
 		isLoading: loadingStatus.status === STATUS.REQUESTING,
 		isSuccess: loadingStatus.status === STATUS.SUCCESS,
 		isFailure: loadingStatus.status === STATUS.FAILURE,
