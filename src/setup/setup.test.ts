@@ -72,4 +72,18 @@ describe('Setup functions', () => {
 		expect(() => Setup.BreinifySetup(ARRAY as any)).toThrow();
 		expect(() => Setup.BreinifySetup(NUMBER as any)).toThrow();
 	});
+
+	it('isSetupComplete: true', () => {
+		const Setup = require('./setup');
+		const API_KEY = 'API_KEY';
+		Setup.BreinifySetup({ apiKey: API_KEY });
+
+		expect(Setup.isSetupComplete()).toEqual(true);
+	});
+
+	it('isSetupComplete: false', () => {
+		const Setup = require('./setup');
+
+		expect(Setup.isSetupComplete()).toEqual(false);
+	});
 });
