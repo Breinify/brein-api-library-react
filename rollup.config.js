@@ -5,6 +5,7 @@ import json from '@rollup/plugin-json';
 import { terser } from 'rollup-plugin-terser';
 import external from 'rollup-plugin-peer-deps-external';
 import visualizer from 'rollup-plugin-visualizer';
+import postcss from 'rollup-plugin-postcss';
 
 const PLUGINS = [
 	external(),
@@ -12,6 +13,7 @@ const PLUGINS = [
 	commonjs(),
 	typescript({ tsconfig: './tsconfig.json', exclude: ['./environments/**'] }),
 	json(),
+	postcss(),
 	visualizer({ filename: 'visualizer.html' }),
 ];
 
