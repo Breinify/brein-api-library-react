@@ -1,12 +1,25 @@
+// testing utilities
 import { renderHook, act } from '@testing-library/react';
-import { useRecommendations } from './useRecommendations';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+
+// mocks
+import { mockAxios } from '../../mocks/axios';
+
+// constants
 import { RECOMMENDATION_URL } from '../../configs';
 
-const mock = new MockAdapter(axios);
+import { useRecommendations } from './useRecommendations';
+
+const TIMEOUT = 100;
 
 describe('useRecommendations', () => {
+	const API_KEY = 'API_KEY';
+	const SECRET = 'SECRET';
+
+	beforeEach(() => {
+		const Setup = require('../../setup');
+		Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET });
+	});
+
 	test('Init', () => {
 		const defaultData = {};
 		const { result } = renderHook(({ defaultDataState }) => useRecommendations(defaultDataState), {
@@ -22,15 +35,13 @@ describe('useRecommendations', () => {
 	});
 
 	test('getRecs success', async () => {
-		const { result } = renderHook(() => useRecommendations());
-		const Setup = require('../../setup');
-		const API_KEY = 'API_KEY';
-		const SECRET = 'SECRET';
+		const mock = mockAxios();
 		const response = {
 			response: {},
 			statusCode: 200,
 		};
-		Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET });
+
+		const { result } = renderHook(() => useRecommendations());
 		mock.onPost(RECOMMENDATION_URL).reply(200, response);
 		await act(async () => {
 			result.current.getRecs({ recommendation: {} });
@@ -45,10 +56,9 @@ describe('useRecommendations', () => {
 	});
 
 	test('getRecs failure', async () => {
+		const mock = mockAxios({ delayResponse: TIMEOUT });
+		jest.useFakeTimers();
 		const { result } = renderHook(() => useRecommendations());
-		const Setup = require('../../setup');
-		const API_KEY = 'API_KEY';
-		const SECRET = 'SECRET';
 		const response = {
 			response: {
 				errorResponse: 'hi',
@@ -56,10 +66,16 @@ describe('useRecommendations', () => {
 			},
 			statusCode: 300,
 		};
-		Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET });
-		mock.onPost(RECOMMENDATION_URL).reply(200, response);
 		await act(async () => {
-			await result.current.getRecs({ recommendation: {} });
+			mock.onPost(RECOMMENDATION_URL).reply(200, response);
+			result.current.getRecs({ recommendation: {} });
+		});
+
+		// test loading states
+		expect(result.current.isLoading).toEqual(true);
+
+		await act(() => {
+			jest.runAllTimers(); // trigger setTimeout
 		});
 
 		expect(result.current.data).toEqual(null);
