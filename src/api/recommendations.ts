@@ -30,8 +30,8 @@ export function getRecommendations({
 		recommendations,
 	};
 	return axios.post(RECOMMENDATION_URL, data).then((response) => {
-		const { data, status } = response;
-		if (status === 200) return data;
+		const { data } = response;
+		if (data?.statusCode === 200) return data;
 		throw data;
 	});
 }

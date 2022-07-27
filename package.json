@@ -17,7 +17,10 @@
 		"url": "git+https://github.com/Breinify/brein-api-library-react.git"
 	},
 	"keywords": [],
-	"author": "Breinify",
+	"authors": [
+		"Alvin Kwong <alvin.kwong@breinify.com>",
+		"Timothy Yue <timothy.yue@breinify.com>"
+	],
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/Breinify/brein-api-library-react/issues"

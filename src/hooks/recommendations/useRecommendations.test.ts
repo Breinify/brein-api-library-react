@@ -21,36 +21,52 @@ describe('useRecommendations', () => {
 		expect(result.current.error).toEqual('');
 	});
 
-	test('getRecs', async () => {
-		const { result, rerender } = renderHook(() => useRecommendations());
+	test('getRecs success', async () => {
+		const { result } = renderHook(() => useRecommendations());
 		const Setup = require('../../setup');
 		const API_KEY = 'API_KEY';
 		const SECRET = 'SECRET';
+		const response = {
+			response: {},
+			statusCode: 200,
+		};
 		Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET });
-		mock.onPost(RECOMMENDATION_URL).reply(200, {
-			data: { user: 1 },
-			status: 200,
+		mock.onPost(RECOMMENDATION_URL).reply(200, response);
+		await act(async () => {
+			result.current.getRecs({ recommendation: {} });
 		});
 
-		// await act(async () => {
-		// 	await result.current.getRecs({ recommendation: {} });
-		// });
+		expect(result.current.data).toEqual(response);
+		expect(result.current.isInit).toEqual(false);
+		expect(result.current.isLoading).toEqual(false);
+		expect(result.current.isSuccess).toEqual(true);
+		expect(result.current.isFailure).toEqual(false);
+		expect(result.current.error).toEqual('');
+	});
+
+	test('getRecs failure', async () => {
+		const { result } = renderHook(() => useRecommendations());
+		const Setup = require('../../setup');
+		const API_KEY = 'API_KEY';
+		const SECRET = 'SECRET';
+		const response = {
+			response: {
+				errorResponse: 'hi',
+				errorCode: 123,
+			},
+			statusCode: 300,
+		};
+		Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET });
+		mock.onPost(RECOMMENDATION_URL).reply(200, response);
 		await act(async () => {
 			await result.current.getRecs({ recommendation: {} });
-			console.log('inside', result.current);
 		});
 
-		console.log('huh', result.current);
-
-		await rerender();
-		console.log('first', result.current);
-
-		// expect(result.current.data).toEqual({ data: {} });
-
-		await rerender();
-
-		console.log('after: ', result.current);
-
-		expect(result.current.isSuccess).toEqual(true);
+		expect(result.current.data).toEqual(null);
+		expect(result.current.isInit).toEqual(false);
+		expect(result.current.isLoading).toEqual(false);
+		expect(result.current.isSuccess).toEqual(false);
+		expect(result.current.isFailure).toEqual(true);
+		expect(result.current.error).toEqual(response);
 	});
 });
