@@ -34,15 +34,15 @@ describe('useRecommendations', () => {
 		expect(result.current.error).toEqual('');
 	});
 
-	test('getRecs success', async () => {
+	test('getRecs should succeed if statusCode: 200 is returned', async () => {
 		const mock = mockAxios();
+		const { result } = renderHook(() => useRecommendations());
 		const response = {
 			response: {},
 			statusCode: 200,
 		};
-
-		const { result } = renderHook(() => useRecommendations());
 		mock.onPost(RECOMMENDATION_URL).reply(200, response);
+
 		await act(async () => {
 			result.current.getRecs({ recommendation: {} });
 		});
@@ -55,19 +55,21 @@ describe('useRecommendations', () => {
 		expect(result.current.error).toEqual('');
 	});
 
-	test('getRecs failure', async () => {
-		const mock = mockAxios({ delayResponse: TIMEOUT });
-		jest.useFakeTimers();
+	const failedCodes = [100, 300, 400, 500, 600, 700, 800, 900];
+	test.each(failedCodes)('getRecs should fail if statusCode === %s', async (statusCode) => {
 		const { result } = renderHook(() => useRecommendations());
+		const mock = mockAxios({ delayResponse: TIMEOUT });
 		const response = {
 			response: {
 				errorResponse: 'hi',
 				errorCode: 123,
 			},
-			statusCode: 300,
+			statusCode,
 		};
+		mock.onPost(RECOMMENDATION_URL).reply(200, response);
+		jest.useFakeTimers();
+
 		await act(async () => {
-			mock.onPost(RECOMMENDATION_URL).reply(200, response);
 			result.current.getRecs({ recommendation: {} });
 		});
 
