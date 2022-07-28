@@ -1,5 +1,5 @@
 # Recommendations
-Retrieves a list of recommended products for the user supplied in the user object of the body. To use the recommendations components, we’ve assumed that you’ve set up [BreinifySetup](README.md#configuring-the-library).
+Retrieves a list of recommended products for the user supplied in the user object of the body. To use the recommendations components, we’ve assumed that you’ve set up [BreinifySetup](/README.md#configuring-the-library).
 
 ## Hooks
 ### useRecommendations
