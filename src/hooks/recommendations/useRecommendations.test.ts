@@ -20,7 +20,7 @@ describe('useRecommendations', () => {
 		Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET });
 	});
 
-	test('Init', () => {
+	test('init state when calling useRecommendations', () => {
 		const defaultData = {};
 		const { result } = renderHook(({ defaultDataState }) => useRecommendations(defaultDataState), {
 			initialProps: { defaultDataState: defaultData },
