@@ -16,9 +16,9 @@ Breinify’s React API library provides hooks, components, and type definitions 
 ## Getting Started
 ### Retrieving an API-Key
 You need a valid API-key, which you can get for free at  [https://www.breinify.com](https://www.breinify.com/) . In the examples, we assume you have the following API key:
-*938D-3120-64DD-413F-BB55-6573-90CE-473A*
+**938D-3120-64DD-413F-BB55-6573-90CE-473A**
 It is recommended to use signed messages when utilizing the react library. A signed messages ensures, that the request is authorized. To activate signed message ensure that `Verification Signature` is enabled for your key (see  [Breinify’s API Docs](https://docs.breinify.com/#request-an-api-key)  for further information). In this documentation we assume that the following secret is attached to the API key and used to sign a message.
-*utakxp7sm6weo5gvk7cytw==*
+**utakxp7sm6weo5gvk7cytw==**
 
 ### Installing
 The library is available on  [npm](https://www.npmjs.com/package/breinify-node)  and can be added using:
