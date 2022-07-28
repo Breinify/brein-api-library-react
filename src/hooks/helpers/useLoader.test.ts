@@ -3,7 +3,7 @@ import { useLoader } from './useLoader';
 import { STATUS } from '../../types';
 
 describe('useLoader', () => {
-	test('Init', () => {
+	test('init state when calling useLoader', () => {
 		const defaultStatus = STATUS.REQUESTING;
 		const defaultDataState = {};
 		const { result } = renderHook(() => useLoader(defaultStatus, defaultDataState));
@@ -12,7 +12,7 @@ describe('useLoader', () => {
 		expect(result.current.loadingStatus.status).toEqual(defaultStatus);
 	});
 
-	test('setLoading', () => {
+	test('after calling setSuccess, setLoading should preserve data and change the loadingStatus.status to REQUESTING', () => {
 		const { result } = renderHook(() => useLoader());
 		const response = 'response';
 		act(() => {
@@ -26,7 +26,7 @@ describe('useLoader', () => {
 		expect(result.current.data).toEqual(response);
 	});
 
-	test('setLoading with isRefetch', () => {
+	test('setLoading with isRefetch: true should change loadingStatus.status to REFETCH', () => {
 		const { result } = renderHook(() => useLoader());
 		act(() => {
 			result.current.setLoading(true);
@@ -35,7 +35,7 @@ describe('useLoader', () => {
 		expect(result.current.loadingStatus.status).toEqual(STATUS.REFETCH);
 	});
 
-	test('setLoading with shouldClearData: true', () => {
+	test('after calling setSuccess, setLoading with shouldClearData: true should clear data and change the loadingStatus.status to REQUESTING', () => {
 		const { result } = renderHook(() => useLoader());
 		const response = 'response';
 		act(() => {
@@ -49,7 +49,7 @@ describe('useLoader', () => {
 		expect(result.current.data).toEqual(null);
 	});
 
-	test('setSuccess with data', () => {
+	test('passing the response into setSuccess should set data with the response', () => {
 		const { result } = renderHook(() => useLoader());
 		const response = 'response';
 		act(() => {
@@ -60,7 +60,7 @@ describe('useLoader', () => {
 		expect(result.current.data).toEqual(response);
 	});
 
-	test('setSuccess with no data', () => {
+	test('passing no response into setSuccess should set data to null', () => {
 		const { result } = renderHook(() => useLoader());
 		act(() => {
 			result.current.setSuccess();
@@ -70,7 +70,7 @@ describe('useLoader', () => {
 		expect(result.current.data).toEqual(null);
 	});
 
-	test('setError with reason', () => {
+	test('after setting response to setSuccess, setError with an error should change loadingStatus.status to FAILURE, set error with the error, and preserve data', () => {
 		const { result } = renderHook(() => useLoader());
 		const response = 'response';
 		const error = 'error';
@@ -86,7 +86,7 @@ describe('useLoader', () => {
 		expect(result.current.data).toEqual(response);
 	});
 
-	test('setError without reason', () => {
+	test("after setting response to setSuccess, setError with NO error should change loadingStatus.status to FAILURE, set error to '', and preserve data", () => {
 		const { result } = renderHook(() => useLoader());
 		const response = 'response';
 		act(() => {
@@ -97,10 +97,11 @@ describe('useLoader', () => {
 		});
 
 		expect(result.current.loadingStatus.status).toEqual(STATUS.FAILURE);
+		expect(result.current.loadingStatus.reason).toEqual('');
 		expect(result.current.data).toEqual(response);
 	});
 
-	test('setError with shouldClearData: true', () => {
+	test('after setting response to setSuccess, setError with an error and shouldClearData: true should change loadingStatus.status to FAILURE, set error with the error, and clear data', () => {
 		const { result } = renderHook(() => useLoader());
 		const response = 'hello';
 		const error = 'error';
@@ -112,6 +113,7 @@ describe('useLoader', () => {
 		});
 
 		expect(result.current.loadingStatus.status).toEqual(STATUS.FAILURE);
+		expect(result.current.loadingStatus.reason).toEqual(error);
 		expect(result.current.data).toEqual(null);
 	});
 });
