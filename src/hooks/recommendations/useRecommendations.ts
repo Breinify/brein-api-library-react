@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 // HOOKS
-import { useLoader } from '../../hooks/helpers';
+import { useLoader } from '../helpers';
 
 // TYPES
 import { RecommendationQuery, STATUS } from '../../types';
