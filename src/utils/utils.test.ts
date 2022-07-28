@@ -1,7 +1,5 @@
 import { isString } from './utils';
 
-describe('isSetupComplete', () => {});
-
 describe('isString', () => {
 	it('should return true when passed a string', () => {
 		const value = isString('hello');

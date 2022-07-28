@@ -17,7 +17,10 @@
 		"url": "git+https://github.com/Breinify/brein-api-library-react.git"
 	},
 	"keywords": [],
-	"author": "Breinify",
+	"authors": [
+		"Alvin Kwong <alvin.kwong@breinify.com>",
+		"Timothy Yue <timothy.yue@breinify.com>"
+	],
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/Breinify/brein-api-library-react/issues"
@@ -52,6 +55,7 @@
 		"@testing-library/react": "^13.1.1",
 		"@types/jest": "^28.1.3",
 		"@types/react": "^18.0.0",
+		"axios-mock-adapter": "^1.21.1",
 		"babel-loader": "^8.2.5",
 		"eslint": "^8.18.0",
 		"eslint-config-airbnb": "^19.0.4",
