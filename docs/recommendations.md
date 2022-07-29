@@ -3,6 +3,23 @@ Retrieves a list of recommended products for the user supplied in the user objec
 
 ## Hooks
 ### useRecommendations
+```tsx
+const { getRecs, data, isInit, isLoading, isSuccess, isFailure, error } =
+        useRecommendations(defaultDataState);
+```
+> During the initial render, the returned data is the same as the value passed as the first argument (defaultDataState).
+> 
+| Name          | Description                                                                   | Type                                                                                                | Default |
+|---------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|---------|
+| **getRecs**   | Call to get recommendations                                                   | `({user, unixTimestamp, signature, recommendation, recommendations}: RecommendationQuery) => void ` |         |
+| **data**      | Response from `getRecs`                                                       | `any`                                                                                               | `null`  |
+| **isInit**    | If true, the hook just initialized                                            | `boolean`                                                                                           | `true`  |
+| **isLoading** | If true, the query is still in flight and results have not yet been returned. | `boolean`                                                                                           | `false` |
+| **isSuccess** | If true, the query has succeeded and the response is passed to `data`         | `boolean`                                                                                           | `false` |
+| **isFailure** | If true, the query has failed and the response is passed to `error`           | `boolean`                                                                                           | `false` |
+| **error**     | Response on why `getRecs` failed                                              | `string`, `object`                                                                                  | `''`    |
+
+
 #### Example
 ```tsx
 import { useRecommendations } from "brein-api-library-react";
