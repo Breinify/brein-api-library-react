@@ -8,7 +8,7 @@ const { getRecs, data, isInit, isLoading, isSuccess, isFailure, error } =
         useRecommendations(defaultDataState);
 ```
 > During the initial render, the returned data is the same as the value passed as the first argument (defaultDataState).
-> 
+
 | Name          | Description                                                                   | Type                                                                                                | Default |
 |---------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|---------|
 | **getRecs**   | Call to get recommendations                                                   | `({user, unixTimestamp, signature, recommendation, recommendations}: RecommendationQuery) => void ` |         |
@@ -51,6 +51,16 @@ export function TestContainer() {
 ## Calls
 ### getRecommendations
 If you don’t want to use the hook (`useRecommendations`) we provided, we also exposed `getRecommendations`  to help call our API.
+
+| Name                | Description                                                                                                        | type                                                                                                 |
+|---------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| **user**            | Information about the user                                                                                         | [user](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)              |
+| **unixTimestamp**   | The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970. | `number`                                                                                             |
+| **signature**       | Signature to authenticate a request, is only available if the the secret for the Breinify API key is configured.   | `string`                                                                                             |
+| **recommendation**  | Parameters set for making the recommendations.                                                                     | [recommendation](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)    |
+| **recommendations** | A list of `recommendation`                                                                                         | [[recommendations]](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) |
+> Please check out the [Breinify Docs](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) for more information about the props
+
 
 #### Example
 ```tsx
