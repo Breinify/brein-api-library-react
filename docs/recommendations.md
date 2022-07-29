@@ -59,9 +59,10 @@ If you don’t want to use the hook (`useRecommendations`) we provided, we also 
 | **signature**                            | Signature to authenticate a request, is only available if the the secret for the Breinify API key is configured.   | `string`                                                                                             |
 | **recommendation**<br/>***required*****  | Parameters set for making the recommendations.                                                                     | [recommendation](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)    |
 | **recommendations**<br/>***required***** | A list of `recommendation`                                                                                         | [[recommendations]](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) |
+> #### ** Either recommendation OR recommendations is required!
 > Please check out the [Breinify Docs](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) for more information about the props
 
-> ** Either recommendation OR recommendations is required!
+
 
 
 #### Example
