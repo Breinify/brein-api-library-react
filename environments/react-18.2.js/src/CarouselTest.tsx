@@ -7,8 +7,8 @@ export const CarouselTest = () => {
 			dots
 			arrows
 			infinite
-			slidesToShow={6}
-			slidesToScroll={6}
+			slidesToShow={3}
+			slidesToScroll={2}
 			responsive={[
 				{
 					breakpoint: 1440,

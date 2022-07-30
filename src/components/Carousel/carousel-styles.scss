@@ -16,6 +16,7 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	height: 100%;
 
 	.br-rec-content {
 		cursor: pointer;
@@ -38,11 +39,18 @@
 	}
 
 	.br-rec-description {
-		font-size: 17px;
+		font-size: 14px;
 		line-height: 19px;
 		padding: 5px 10px 0 10px;
-		font-weight: bold;
+		font-weight: normal;
 		text-align: left;
+
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: normal;
 	}
 
 	.br-rec-footer {
