@@ -1,17 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import { TestContainer } from './TestContainer';
+import { CarouselTest } from './CarouselTest';
+
+import { BreinifySetup } from 'brein-api-library-react';
+
+const apiKey = process.env.REACT_APP_API_KEY || '';
+const secret = process.env.REACT_APP_SECRET;
+
+BreinifySetup({ apiKey, secret });
 
 function App() {
 	return (
 		<div className='App'>
-			<header className='App-header'>
-				<img src={logo} className='App-logo' alt='logo' />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<TestContainer />
-			</header>
+			<CarouselTest />
 		</div>
 	);
 }
