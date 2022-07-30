@@ -10,22 +10,57 @@ import type { Settings } from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const DefaultCarouselComponent = (props: any) => {
+import './carousel-styles.scss';
+
+const DefaultCarouselComponent = ({ title, image, description }: any) => {
 	return (
-		<div>
-			<pre style={{ fontSize: '10px' }}>{JSON.stringify(props, null, 2)}</pre>
+		<div className='breinify-recommendation'>
+			<div className='br-rec-content'>
+				<div className='br-product-image-overlay' />
+				<img className='br-product-image' src={image} />
+				<div className='br-product-name'>{title}</div>
+			</div>
+			{!!description && (
+				<div className='br-rec-description'>
+					<span>{description}</span>
+				</div>
+			)}
+			<div className='br-rec-footer'>
+				<div className='br-rec-button'>View Product</div>
+			</div>
 		</div>
 	);
 };
 
+function defaultGetComponentProps(data: Record<string, any> = {}) {
+	const { additionalData } = data;
+	const title = additionalData['product::productName'];
+	const image = additionalData['product::productMediumImageUrl'] || additionalData['product::productImageUrl']; // prioritzes medium image URL
+	const url = additionalData['product::productUrl'];
+	const description = additionalData['product::productDescription'];
+
+	return {
+		title,
+		image,
+		url,
+		description,
+	};
+}
+
 export interface CarouselProps extends Settings {
 	component?: React.ComponentType<any>;
+	getComponentProps?(dataResult: any): Record<string, any>;
 	recommendationQuery: RecommendationQuery;
+	onError?(reason: any): void;
+	containerClassName?: string;
 }
 
 export default function Carousel({
 	component: Component = DefaultCarouselComponent,
+	getComponentProps = defaultGetComponentProps,
 	recommendationQuery,
+	onError,
+	containerClassName,
 	...sliderProps
 }: CarouselProps) {
 	const { data, error, getRecs, isFailure, isLoading, isSuccess } = useRecommendations(null);
@@ -43,8 +78,10 @@ export default function Carousel({
 	}
 
 	return (
-		<Slider {...sliderProps}>
-			{Array.isArray(data) && data.map((each, idx) => <Component key={idx} {...each} />)}
-		</Slider>
+		<div className={containerClassName}>
+			<Slider {...sliderProps}>
+				{Array.isArray(data) && data.map((each, idx) => <Component {...getComponentProps(each)} key={idx} />)}
+			</Slider>
+		</div>
 	);
 }
