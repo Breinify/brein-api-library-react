@@ -53,6 +53,7 @@ export interface CarouselProps extends Settings {
 	recommendationQuery: RecommendationQuery;
 	onError?(reason: any): void;
 	containerClassName?: string;
+	containerStyles?: React.CSSProperties;
 }
 
 export default function Carousel({
@@ -60,7 +61,8 @@ export default function Carousel({
 	getComponentProps = defaultGetComponentProps,
 	recommendationQuery,
 	onError,
-	containerClassName,
+	containerClassName = 'breinify-carousel',
+	containerStyles,
 	...sliderProps
 }: CarouselProps) {
 	const { data, error, getRecs, isFailure, isLoading, isSuccess } = useRecommendations(null);
@@ -78,7 +80,7 @@ export default function Carousel({
 	}
 
 	return (
-		<div className={containerClassName}>
+		<div className={containerClassName} style={containerStyles}>
 			<Slider {...sliderProps}>
 				{Array.isArray(data) && data.map((each, idx) => <Component {...getComponentProps(each)} key={idx} />)}
 			</Slider>

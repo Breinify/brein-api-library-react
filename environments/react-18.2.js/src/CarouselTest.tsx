@@ -9,6 +9,7 @@ export const CarouselTest = () => {
 			infinite
 			slidesToShow={3}
 			slidesToScroll={2}
+			containerStyles={{ padding: '20%' }}
 			responsive={[
 				{
 					breakpoint: 1440,
@@ -55,7 +56,6 @@ export const CarouselTest = () => {
 					},
 				},
 			]}
-			containerClassName='carousel-container'
 			recommendationQuery={{
 				user: {
 					sessionId: 'some session id',

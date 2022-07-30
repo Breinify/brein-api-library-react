@@ -1,71 +1,73 @@
-.slick-track {
-	display: flex !important;
+.breinify-carousel {
+	.slick-track {
+		display: flex !important;
 
-	.slick-slide {
-		height: inherit !important;
+		.slick-slide {
+			height: inherit !important;
 
-		& > div {
-			height: 100%;
-		}
-	}
-}
-
-.breinify-recommendation {
-	color: #000;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	height: 100%;
-
-	.br-rec-content {
-		cursor: pointer;
-
-		.br-product-image {
-			height: 180px;
-			width: 180px;
-			margin: auto;
-			max-width: 100%;
-		}
-
-		.br-product-name {
-			font-size: 18px;
-			line-height: 20px;
-			height: 65px;
-			font-weight: bold;
-			padding: 5px 10px 0 5px;
-			overflow: hidden;
+			& > div {
+				height: 100%;
+			}
 		}
 	}
 
-	.br-rec-description {
-		font-size: 14px;
-		line-height: 19px;
-		padding: 5px 10px 0 10px;
-		font-weight: normal;
-		text-align: left;
+	.breinify-recommendation {
+		color: #000;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		height: 100%;
 
-		display: -webkit-box;
-		-webkit-line-clamp: 4;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: normal;
-	}
-
-	.br-rec-footer {
-		justify-self: flex-end;
-		padding: 10px 10px 5px 10px;
-
-		.br-rec-button {
+		.br-rec-content {
 			cursor: pointer;
-			text-align: center;
-			font-size: 17px;
-			line-height: 30px;
-			border: 1px solid #de2516;
-			border-radius: 4px;
-			background-color: #fff;
-			color: #de2516;
+
+			.br-product-image {
+				height: 180px;
+				width: 180px;
+				margin: auto;
+				max-width: 100%;
+			}
+
+			.br-product-name {
+				font-size: 18px;
+				line-height: 20px;
+				height: 65px;
+				font-weight: bold;
+				padding: 5px 10px 0 5px;
+				overflow: hidden;
+			}
+		}
+
+		.br-rec-description {
+			font-size: 14px;
+			line-height: 19px;
+			padding: 5px 10px 0 10px;
+			font-weight: normal;
+			text-align: left;
+
+			display: -webkit-box;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: normal;
+		}
+
+		.br-rec-footer {
+			margin-top: auto;
+			padding: 10px 10px 5px 10px;
+
+			.br-rec-button {
+				cursor: pointer;
+				text-align: center;
+				font-size: 17px;
+				line-height: 30px;
+				border: 1px solid #de2516;
+				border-radius: 4px;
+				background-color: #fff;
+				color: #de2516;
+			}
 		}
 	}
 }
