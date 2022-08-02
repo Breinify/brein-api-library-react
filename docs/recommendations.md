@@ -131,6 +131,8 @@ getRecommendations({
   "statusCode": 200
 }
 ```
+> [recommendation](#recommendation) in `results`
+
 #### Result response
 | Name                 | Description                              | Type     |
 |----------------------|------------------------------------------|----------|
