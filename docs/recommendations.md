@@ -1,5 +1,12 @@
 # Recommendations
 Retrieves a list of recommended products for the user supplied in the user object of the body. To use the recommendations components, we’ve assumed that you’ve set up [BreinifySetup](/README.md#configuring-the-library).
+We provide a toolkit for you to interact with the Breinify API.
+* [Hooks](#hooks)
+  * [useRecommendations](#userecommendations)
+  * [Example](#example)
+* [Utilities](#utilities)
+  * [getRecommendations](#getrecommendations)
+  * [Example](#example)
 
 ## Hooks
 Provides a standard API wrapper that calls the `getRecommendation` fetch method.
@@ -50,7 +57,7 @@ export function TestContainer() {
 }
 ```
 
-## Calls
+## Utilities
 ### getRecommendations
 We've also exposed the lower level utility that aids in calling our recommendation API.
 
@@ -63,9 +70,6 @@ We've also exposed the lower level utility that aids in calling our recommendati
 | **recommendations**<br/>***required***** | A list of `recommendation`                                                                                         | [[recommendations]](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) |
 > #### ** Either recommendation OR recommendations is required!
 > Please check out the [Breinify Docs](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) for more information about the props
-
-
-
 
 #### Example
 ```tsx
