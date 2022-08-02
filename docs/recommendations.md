@@ -83,3 +83,57 @@ getRecommendations({
     .then((response) => {})
     .catch((error) => {});
 ```
+
+
+### Success Response
+
+#### recommendation
+```json
+{
+  "additionalData": {},
+  "result": [{
+    "dataIdExternal": "123",
+    "recommendationWeight": 0.9,
+    "additionalData": {
+      "name": "some name",
+      "clientSuppliedField": "some meta data"
+    }
+  },
+    {
+      "dataIdExternal": "234",
+      "recommendationWeight": 0.87,
+      "additionalData": {
+        "name": "another name",
+        "clientSuppliedField": "some meta data"
+      }
+    },
+    {
+      "dataIdExternal": "345",
+      "recommendationWeight": 0.86,
+      "additionalData": {
+        "name": "third item name",
+        "clientSuppliedField": "some meta data"
+      }
+    }
+  ],
+  "message": "Successful execution with nothing to report.",
+  "statusCode": 200
+}
+```
+
+#### recommendations
+```json
+{
+  "results": [
+    recommendation
+  ],
+  "message": "Successful execution with nothing to report.",
+  "statusCode": 200
+}
+```
+#### Result response
+| Name                 | Description                              | Type     |
+|----------------------|------------------------------------------|----------|
+| dataIdExternal       | The client’s id for the recommended item | `string` |
+| recommendationWeight | The recommender’s weight for the item    | `float`  |
+| additionalData       | Additional data supplied by the client   | `object  |
