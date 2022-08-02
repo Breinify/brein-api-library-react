@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 // CONFIGS
-import { BreinifyGlobalConfigs } from '../setup';
 import { RECOMMENDATION_URL } from '../configs';
 
-// UTILS
-import { isSetupComplete } from '../utils';
+// SETUP
+import { BreinifyGlobalConfigs, isSetupComplete } from '../setup';
 
 // TYPES
 import { RecommendationQuery } from '../types';
@@ -31,8 +30,8 @@ export function getRecommendations({
 		recommendations,
 	};
 	return axios.post(RECOMMENDATION_URL, data).then((response) => {
-		const { data, status } = response;
-		if (status === 200) return data;
+		const { data } = response;
+		if (data?.statusCode === 200) return data;
 		throw data;
 	});
 }
