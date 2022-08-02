@@ -1,18 +1,20 @@
 import React from 'react';
-
-import type { RecommendationQuery } from '../../types';
-
-import { useRecommendations } from '../../hooks';
-
 import Slider from 'react-slick';
 import type { Settings } from 'react-slick';
 
+// TYPES
+import type { RecommendationQuery } from '../../types';
+
+// HOOKS
+import { useRecommendations } from '../../hooks';
+
+// CSS
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
 import './carousel-styles.scss';
 
-const DefaultCarouselComponent = ({ title, image, description }: any) => {
+const DefaultCarouselComponent = ({ onButton, ...props }: any) => {
+	const { title, image, description } = props;
 	return (
 		<div className='breinify-recommendation'>
 			<div className='br-rec-content'>
@@ -25,7 +27,7 @@ const DefaultCarouselComponent = ({ title, image, description }: any) => {
 					<span>{description}</span>
 				</div>
 			)}
-			<div className='br-rec-footer'>
+			<div className='br-rec-footer' onClick={() => onButton(props)}>
 				<div className='br-rec-button'>View Product</div>
 			</div>
 		</div>
@@ -60,12 +62,12 @@ function defaultGetComponentProps(data: Record<string, any> = {}) {
 
 export interface CarouselProps extends Settings {
 	component?: React.ComponentType<any>;
+	loaderComponent?: React.ComponentType<any>;
 	getComponentProps?(dataResult: any): Record<string, any>;
 	recommendationQuery: RecommendationQuery;
-	onError?(reason: any): void;
 	containerClassName?: string;
 	containerStyles?: React.CSSProperties;
-	loaderComponent?: React.ComponentType<any>;
+	onButton?(props: any): void;
 }
 
 export default function Carousel({
@@ -73,12 +75,12 @@ export default function Carousel({
 	loaderComponent: LoaderComponent = DefaultLoaderComponent,
 	getComponentProps = defaultGetComponentProps,
 	recommendationQuery,
-	onError,
 	containerClassName = 'breinify-carousel',
 	containerStyles,
+	onButton = () => {},
 	...sliderProps
 }: CarouselProps) {
-	const { data, error, getRecs, isFailure, isLoading, isSuccess } = useRecommendations(null);
+	const { data, getRecs, isFailure, isLoading, isSuccess } = useRecommendations(null);
 
 	React.useEffect(() => {
 		getRecs(recommendationQuery, (response) => response.result);
@@ -94,7 +96,9 @@ export default function Carousel({
 			{isSuccess && (
 				<Slider {...sliderProps}>
 					{Array.isArray(data) &&
-						data.map((each, idx) => <Component {...getComponentProps(each)} key={idx} />)}
+						data.map((each, idx) => (
+							<Component {...getComponentProps(each)} onButton={onButton} key={idx} />
+						))}
 				</Slider>
 			)}
 		</div>
