@@ -7,6 +7,9 @@ We provide a toolkit for you to interact with the Breinify API.
 * [Utilities](#utilities)
   * [getRecommendations](#getrecommendations)
   * [Example](#example-1)
+  * [Response](#success-response)
+    * [recommendation](#recommendation)
+    * [recommendations](#recommendations)
 
 ## Hooks
 Provides a standard API wrapper that calls the `getRecommendation` fetch method.
@@ -21,7 +24,7 @@ const { getRecs, data, isInit, isLoading, isSuccess, isFailure, error } =
 | Name          | Description                                                                   | Type                                                                                                | Default |
 |---------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|---------|
 | **getRecs**   | Call to get recommendations                                                   | `({user, unixTimestamp, signature, recommendation, recommendations}: RecommendationQuery) => void ` |         |
-| **data**      | Response from `getRecs`                                                       | `any`                                                                                               | `null`  |
+| **data**      | Response from `getRecs`                                                       | [recommendation](#recommendation), [recommendations](#recommendations)                              | `null`  |
 | **isInit**    | If true, the hook just initialized                                            | `boolean`                                                                                           | `true`  |
 | **isLoading** | If true, the query is still in flight and results have not yet been returned. | `boolean`                                                                                           | `false` |
 | **isSuccess** | If true, the query has succeeded and the response is passed to `data`         | `boolean`                                                                                           | `false` |
