@@ -11,6 +11,31 @@
 		}
 	}
 
+	.slick-arrow {
+		&:before {
+			content: '\2303';
+			display: inline-block;
+			font-weight: 900;
+			color: #42A2DE;
+		}
+	}
+
+	.slick-next {
+		&:before {
+			transform: rotate(90deg);
+		}
+	}
+
+	.slick-prev {
+		&:before {
+			transform: rotate(-90deg);
+		}
+	}
+
+	.slick-dots li button:before {
+		font-size: 1rem;
+	}
+
 	.breinify-recommendation {
 		color: #000;
 		text-align: center;
@@ -63,10 +88,10 @@
 				text-align: center;
 				font-size: 17px;
 				line-height: 30px;
-				border: 1px solid #de2516;
+				border: 1px solid #42A2DE;
 				border-radius: 4px;
 				background-color: #fff;
-				color: #de2516;
+				color: #42A2DE;
 			}
 		}
 	}
