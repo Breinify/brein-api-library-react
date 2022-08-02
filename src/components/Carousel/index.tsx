@@ -32,6 +32,17 @@ const DefaultCarouselComponent = ({ title, image, description }: any) => {
 	);
 };
 
+const DefaultLoaderComponent = () => {
+	return (
+		<div className='lds-ring'>
+			<div />
+			<div />
+			<div />
+			<div />
+		</div>
+	);
+};
+
 function defaultGetComponentProps(data: Record<string, any> = {}) {
 	const { additionalData } = data;
 	const title = additionalData['product::productName'];
@@ -54,10 +65,12 @@ export interface CarouselProps extends Settings {
 	onError?(reason: any): void;
 	containerClassName?: string;
 	containerStyles?: React.CSSProperties;
+	loaderComponent?: React.ComponentType<any>;
 }
 
 export default function Carousel({
 	component: Component = DefaultCarouselComponent,
+	loaderComponent: LoaderComponent = DefaultLoaderComponent,
 	getComponentProps = defaultGetComponentProps,
 	recommendationQuery,
 	onError,
@@ -71,19 +84,19 @@ export default function Carousel({
 		getRecs(recommendationQuery, (response) => response.result);
 	}, []);
 
-	if (isLoading) {
-		return <span>Loading...</span>;
-	}
-
 	if (isFailure) {
-		return <span>ERROR</span>;
+		return null;
 	}
 
 	return (
 		<div className={containerClassName} style={containerStyles}>
-			<Slider {...sliderProps}>
-				{Array.isArray(data) && data.map((each, idx) => <Component {...getComponentProps(each)} key={idx} />)}
-			</Slider>
+			{isLoading && <LoaderComponent />}
+			{isSuccess && (
+				<Slider {...sliderProps}>
+					{Array.isArray(data) &&
+						data.map((each, idx) => <Component {...getComponentProps(each)} key={idx} />)}
+				</Slider>
+			)}
 		</div>
 	);
 }
