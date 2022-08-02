@@ -21,16 +21,36 @@ const { getRecs, data, isInit, isLoading, isSuccess, isFailure, error } =
 ```
 > During the initial render, the returned data is the same as the value passed as the first argument (defaultDataState).
 
-| Name          | Description                                                                   | Type                                                                                                | Default |
-|---------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|---------|
-| **getRecs**   | Call to get recommendations                                                   | `({user, unixTimestamp, signature, recommendation, recommendations}: RecommendationQuery) => void ` |         |
-| **data**      | Response from `getRecs`                                                       | [recommendation](#recommendation), [recommendations](#recommendations-1)                            | `null`  |
-| **isInit**    | If true, the hook just initialized                                            | `boolean`                                                                                           | `true`  |
-| **isLoading** | If true, the query is still in flight and results have not yet been returned. | `boolean`                                                                                           | `false` |
-| **isSuccess** | If true, the query has succeeded and the response is passed to `data`         | `boolean`                                                                                           | `false` |
-| **isFailure** | If true, the query has failed and the response is passed to `error`           | `boolean`                                                                                           | `false` |
-| **error**     | Response on why `getRecs` failed                                              | `string`, `object`                                                                                  | `''`    |
+| Name          | Description                                                                   | Type                                                                                                          | Default |
+|---------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|---------|
+| **getRecs**   | Call to get recommendations                                                   | `({user, unixTimestamp, signature, recommendation, recommendations}: RecommendationQuery, selector) => void ` |         |
+| **data**      | Response from `getRecs`                                                       | [recommendation](#recommendation), [recommendations](#recommendations-1)                                      | `null`  |
+| **isInit**    | If true, the hook just initialized                                            | `boolean`                                                                                                     | `true`  |
+| **isLoading** | If true, the query is still in flight and results have not yet been returned. | `boolean`                                                                                                     | `false` |
+| **isSuccess** | If true, the query has succeeded and the response is passed to `data`         | `boolean`                                                                                                     | `false` |
+| **isFailure** | If true, the query has failed and the response is passed to `error`           | `boolean`                                                                                                     | `false` |
+| **error**     | Response on why `getRecs` failed                                              | `string`, `object`                                                                                            | `''`    |
 
+#### getRecs
+```tsx
+getRecs({user, unixTimestamp, signature, recommendation, recommendations}: RecommendationQuery, selector)
+```
+
+##### RecommendationQuery
+| Name                                     | Description                                                                                                        | Type                                                                                                 |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| **user**                                 | Information about the user                                                                                         | [user](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)              |
+| **unixTimestamp**                        | The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970. | `number`                                                                                             |
+| **signature**                            | Signature to authenticate a request, is only available if the the secret for the Breinify API key is configured.   | `string`                                                                                             |
+| **recommendation**<br/>***required*****  | Parameters set for making the recommendations.                                                                     | [recommendation](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)    |
+| **recommendations**<br/>***required***** | A list of `recommendation`                                                                                         | [[recommendations]](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) |
+> #### ** Either recommendation OR recommendations is required!
+> Please check out the [Breinify Docs](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) for more information about the props
+
+##### Selector
+| Name         | Description                                                                                      | Type       |
+|--------------|--------------------------------------------------------------------------------------------------|------------|
+| **selector** | A function that allows the user to parse the response and use that parsed response in the `data` | `function` |
 
 #### Example
 ```tsx
@@ -64,16 +84,6 @@ export function TestContainer() {
 ### getRecommendations
 We've also exposed the lower level utility that aids in calling our recommendation API.
 
-| Name                                     | Description                                                                                                        | type                                                                                                 |
-|------------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| **user**                                 | Information about the user                                                                                         | [user](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)              |
-| **unixTimestamp**                        | The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970. | `number`                                                                                             |
-| **signature**                            | Signature to authenticate a request, is only available if the the secret for the Breinify API key is configured.   | `string`                                                                                             |
-| **recommendation**<br/>***required*****  | Parameters set for making the recommendations.                                                                     | [recommendation](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)    |
-| **recommendations**<br/>***required***** | A list of `recommendation`                                                                                         | [[recommendations]](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) |
-> #### ** Either recommendation OR recommendations is required!
-> Please check out the [Breinify Docs](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) for more information about the props
-
 #### Example
 ```tsx
 getRecommendations({
@@ -82,11 +92,11 @@ getRecommendations({
     signature,
     recommendation,
     recommendations,
-})
+}: RecommendationQuery)
     .then((response) => {})
     .catch((error) => {});
 ```
-
+> [RecommendationQuery](#getrecs)
 
 ### Success Response
 
