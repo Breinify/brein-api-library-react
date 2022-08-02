@@ -141,4 +141,4 @@ getRecommendations({
 |----------------------|------------------------------------------|----------|
 | dataIdExternal       | The client’s id for the recommended item | `string` |
 | recommendationWeight | The recommender’s weight for the item    | `float`  |
-| additionalData       | Additional data supplied by the client   | `object  |
+| additionalData       | Additional data supplied by the client   | `object` |
