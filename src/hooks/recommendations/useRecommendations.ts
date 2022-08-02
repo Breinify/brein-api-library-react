@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 // HOOKS
-import { useLoader } from '../helpers';
+import { useLoader } from '../../hooks/helpers';
 
 // TYPES
 import { RecommendationQuery, STATUS } from '../../types';
@@ -27,7 +27,6 @@ export const useRecommendations = <T = any>(defaultDataState: any = null) => {
 	return {
 		getRecs,
 		data,
-		isInit: loadingStatus.status === STATUS.INIT,
 		isLoading: loadingStatus.status === STATUS.REQUESTING,
 		isSuccess: loadingStatus.status === STATUS.SUCCESS,
 		isFailure: loadingStatus.status === STATUS.FAILURE,
