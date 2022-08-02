@@ -48,7 +48,7 @@
 			cursor: pointer;
 
 			.br-product-image {
-				height: 180px;
+				height: fit-content;
 				width: 180px;
 				margin: auto;
 				max-width: 100%;
@@ -57,10 +57,16 @@
 			.br-product-name {
 				font-size: 18px;
 				line-height: 20px;
-				height: 65px;
 				font-weight: bold;
 				padding: 5px 10px 0 5px;
 				overflow: hidden;
+
+				display: -webkit-box;
+				-webkit-line-clamp: 3;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: normal;
 			}
 		}
 
