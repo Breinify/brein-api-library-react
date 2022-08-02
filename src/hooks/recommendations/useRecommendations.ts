@@ -19,9 +19,9 @@ export const useRecommendations = <T = any>(defaultDataState: any = null) => {
 			setLoading();
 			getRecommendations({ user, unixTimestamp, signature, recommendation, recommendations })
 				.then((response) => {
-					let something = response;
-					if (typeof selector === 'function') something = selector(response);
-					setSuccess(something);
+					let parsedData = response;
+					if (typeof selector === 'function') parsedData = selector(response);
+					setSuccess(parsedData);
 				})
 				.catch((error) => {
 					setError(error);
