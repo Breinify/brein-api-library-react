@@ -6,7 +6,7 @@ We provide a toolkit for you to interact with the Breinify API.
   * [Example](#example)
 * [Utilities](#utilities)
   * [getRecommendations](#getrecommendations)
-  * [Example](#example)
+  * [Example](#example-1)
 
 ## Hooks
 Provides a standard API wrapper that calls the `getRecommendation` fetch method.
