@@ -12,11 +12,16 @@ import { getRecommendations } from '../../api';
 export const useRecommendations = <T = any>(defaultDataState: any = null) => {
 	const { loadingStatus, data, setLoading, setSuccess, setError } = useLoader(undefined, defaultDataState);
 	const getRecs = useCallback(
-		({ user, unixTimestamp, signature, recommendation, recommendations }: RecommendationQuery) => {
+		(
+			{ user, unixTimestamp, signature, recommendation, recommendations }: RecommendationQuery,
+			selector?: (response: any) => any
+		) => {
 			setLoading();
 			getRecommendations({ user, unixTimestamp, signature, recommendation, recommendations })
 				.then((response) => {
-					setSuccess(response);
+					let parsedData = response;
+					if (typeof selector === 'function') parsedData = selector(response);
+					setSuccess(parsedData);
 				})
 				.catch((error) => {
 					setError(error);
