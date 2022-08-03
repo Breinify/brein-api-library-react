@@ -3,7 +3,7 @@ import { IConfig, SetupProps } from '../types';
 import { isString } from '../utils';
 
 // Required keys needed to initialize BreinifyGlobalConfigs
-const requiredSetup = {
+export const requiredSetup = {
 	apiKey: 'apiKey',
 };
 
@@ -16,6 +16,7 @@ export function BreinifySetup({ apiKey, secret }: SetupProps): void {
 	if (secret && !isString(secret)) throw 'Secret needs to be a string';
 	BreinifyGlobalConfigs.apiKey = apiKey;
 	BreinifyGlobalConfigs.secret = secret;
+	Object.freeze(BreinifyGlobalConfigs);
 }
 
 // Checks if BreinifySetup is complete
