@@ -13,8 +13,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './carousel-styles.scss';
 
-const DefaultCarouselComponent = ({ onButton, ...props }: any) => {
+const DefaultCarouselComponent = ({ onButtonClick, ...props }: any) => {
 	const { title, image, description } = props;
+
+	function onClick() {
+		if (onButtonClick instanceof Function) onButtonClick(props);
+	}
+
 	return (
 		<div className='breinify-recommendation'>
 			<div className='br-rec-content'>
@@ -27,7 +32,7 @@ const DefaultCarouselComponent = ({ onButton, ...props }: any) => {
 					<span>{description}</span>
 				</div>
 			)}
-			<div className='br-rec-footer' onClick={() => onButton(props)}>
+			<div className='br-rec-footer' onClick={onClick}>
 				<div className='br-rec-button'>View Product</div>
 			</div>
 		</div>
@@ -67,7 +72,8 @@ export interface CarouselProps extends Settings {
 	recommendationQuery: RecommendationQuery;
 	containerClassName?: string;
 	containerStyles?: React.CSSProperties;
-	onButton?(props: any): void;
+	onError?(error: any): void;
+	onButtonClick?(props: any): void;
 }
 
 export default function Carousel({
@@ -77,14 +83,19 @@ export default function Carousel({
 	recommendationQuery,
 	containerClassName = 'breinify-carousel',
 	containerStyles,
-	onButton = () => {},
+	onButtonClick,
+	onError,
 	...sliderProps
 }: CarouselProps) {
-	const { data, getRecs, isFailure, isLoading, isSuccess } = useRecommendations(null);
+	const { data, getRecs, isFailure, isLoading, isSuccess, error } = useRecommendations(null);
 
 	React.useEffect(() => {
 		getRecs(recommendationQuery, (response) => response.result);
 	}, []);
+
+	React.useEffect(() => {
+		if (isFailure && onError instanceof Function) onError(error);
+	}, [isFailure]);
 
 	if (isFailure) {
 		return null;
@@ -97,7 +108,7 @@ export default function Carousel({
 				<Slider {...sliderProps}>
 					{Array.isArray(data) &&
 						data.map((each, idx) => (
-							<Component {...getComponentProps(each)} onButton={onButton} key={idx} />
+							<Component {...getComponentProps(each)} onButtonClick={onButtonClick} key={idx} />
 						))}
 				</Slider>
 			)}
