@@ -3,6 +3,7 @@ export const enum STATUS {
 	REQUESTING = 'REQUESTING',
 	FAILURE = 'FAILURE',
 	REFETCH = 'REFETCH',
+	INIT = 'INIT',
 }
 
 export type LoadingState = {
