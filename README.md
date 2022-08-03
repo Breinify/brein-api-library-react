@@ -27,7 +27,7 @@ npm i brein-react-api-library-react --save
 ```
 
 ### Configuring the Library
-Whenever the library is used, it needs to be configured, i.e., the configuration defines which API key and which secret (if signed messages are enabled, i.e., `Verification Signature` is checked) to use. Please place `BreinifySetup` on the top most section of your application.
+Whenever the library is used, it needs to be configured, i.e., the configuration defines which API key and which secret (if signed messages are enabled, i.e., `Verification Signature` is checked) to use. Please place `BreinifySetup` on the top most section of your application. <br/>**Warning: Only call BreinSetup once in your application!**
 ```tsx
 import { BreinifySetup } from 'brein-api-library-react';
 
