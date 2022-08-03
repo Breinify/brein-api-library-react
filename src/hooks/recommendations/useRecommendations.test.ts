@@ -15,7 +15,7 @@ describe('useRecommendations', () => {
 	const API_KEY = 'API_KEY';
 	const SECRET = 'SECRET';
 
-	beforeEach(() => {
+	beforeAll(() => {
 		const Setup = require('../../setup');
 		Setup.BreinifySetup({ apiKey: API_KEY, secret: SECRET });
 	});
