@@ -152,3 +152,91 @@ getRecommendations({
 | dataIdExternal       | The client’s id for the recommended item | `string` |
 | recommendationWeight | The recommender’s weight for the item    | `float`  |
 | additionalData       | Additional data supplied by the client   | `object` |
+
+## Carousel
+Our Carousel extends [react-slick](https://react-slick.neostack.com/docs/api).
+
+| Name                    | Description                                                                                | Type            | Defaults                   |
+|-------------------------|--------------------------------------------------------------------------------------------|-----------------|----------------------------|
+| **component**           | Customize the component displaying each carousel item                                      | `Component`     | `DefaultCarouselComponent` |
+| **loaderComponent**     |                                                                                            | `Component`     | `DefaultLoaderComponent`   |
+| **getComponentProps**   |                                                                                            | `function`      | `defaultGetComponentProps` |
+| **recommendationQuery** |                                                                                            | `object`        |                            |
+| **containerClassName**  |                                                                                            | `string`        | `'breinify-carousel'`      |
+| **containerStyles**     |                                                                                            | `CSSProperties` |                            |
+| **onError**             |                                                                                            | `function`      |                            |
+| **onButtonClick**       |                                                                                            | `function`      |                            |
+| **...sliderProps**      | Props to pass into the carousel ([react-slick](https://react-slick.neostack.com/docs/api)) |                 |                            |
+
+#### Example
+```tsx
+import React from "react";
+import { Carousel } from "brein-api-library-react";
+
+export const CarouselTest = () => {
+  return (
+          <Carousel
+                  dots
+                  arrows
+                  infinite
+                  slidesToShow={3}
+                  slidesToScroll={2}
+                  containerStyles={{ padding: "20%", height: "350px" }}
+                  onButtonClick={(props) => console.log("props: ", props)}
+                  onError={(error) => console.log("error: ", error)}
+                  responsive={[
+                    {
+                      breakpoint: 1440,
+                      settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 5,
+                      },
+                    },
+                    {
+                      breakpoint: 1024,
+                      settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 4,
+                      },
+                    },
+                    {
+                      breakpoint: 850,
+                      settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                      },
+                    },
+                    {
+                      breakpoint: 600,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                      },
+                    },
+                    {
+                      breakpoint: 500,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        dots: true,
+                      },
+                    },
+                    {
+                      breakpoint: 425,
+                      settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false,
+                      },
+                    },
+                  ]}
+                  recommendationQuery={{
+                    recommendation: {
+                      numRecommendations: 10,
+                    },
+                  }}
+          />
+  );
+};
+
+```
