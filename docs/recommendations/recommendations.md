@@ -37,13 +37,13 @@ getRecs({user, unixTimestamp, signature, recommendation, recommendations}: Recom
 ```
 
 ##### RecommendationQuery
-| Name                                     | Description                                                                                                        | Type                                                                                                 |
-|------------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| **user**                                 | Information about the user                                                                                         | [user](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)              |
-| **unixTimestamp**                        | The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970. | `number`                                                                                             |
-| **signature**                            | Signature to authenticate a request, is only available if the the secret for the Breinify API key is configured.   | `string`                                                                                             |
-| **recommendation**<br/>***required*****  | Parameters set for making the recommendations.                                                                     | [recommendation](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)    |
-| **recommendations**<br/>***required***** | A list of `recommendation`                                                                                         | [[recommendations]](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) |
+| Name                                     | Description                                                                                                        | Type                                                                                                       |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| **user**                                 | Information about the user                                                                                         | [user](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)                    |
+| **unixTimestamp**                        | The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970. | number                                                                                                     |
+| **signature**                            | Signature to authenticate a request, is only available if the the secret for the Breinify API key is configured.   | string                                                                                                     |
+| **recommendation**<br/>***required*****  | Parameters set for making the recommendations.                                                                     | [recommendation](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation)          |
+| **recommendations**<br/>***required***** | A list of `recommendation`                                                                                         | Array of [recommendation](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) |
 > #### ** Either recommendation OR recommendations is required!
 > Please check out the [Breinify Docs](https://docs.breinify.com/?javascript--node#requesting-a-product-recommendation) for more information about the props
 
@@ -144,7 +144,7 @@ getRecommendations({
   "statusCode": 200
 }
 ```
-> [recommendation](#recommendation) in `results`
+> [recommendation](#recommendation) in this case is the response above
 
 #### Result response
 | Name                 | Description                              | Type     |
@@ -156,17 +156,17 @@ getRecommendations({
 ## Carousel
 Our Carousel extends [react-slick](https://react-slick.neostack.com/docs/api).
 
-| Name                    | Description                                                                                | Type            | Defaults                   |
-|-------------------------|--------------------------------------------------------------------------------------------|-----------------|----------------------------|
-| **component**           | Customize the component displaying each carousel item                                      | `Component`     | `DefaultCarouselComponent` |
-| **loaderComponent**     |                                                                                            | `Component`     | `DefaultLoaderComponent`   |
-| **getComponentProps**   |                                                                                            | `function`      | `defaultGetComponentProps` |
-| **recommendationQuery** |                                                                                            | `object`        |                            |
-| **containerClassName**  |                                                                                            | `string`        | `'breinify-carousel'`      |
-| **containerStyles**     |                                                                                            | `CSSProperties` |                            |
-| **onError**             |                                                                                            | `function`      |                            |
-| **onButtonClick**       |                                                                                            | `function`      |                            |
-| **...sliderProps**      | Props to pass into the carousel ([react-slick](https://react-slick.neostack.com/docs/api)) |                 |                            |
+| Name                                                        | Description                                                                                                 | Type                  | Props            |
+|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-----------------------|------------------|
+| **recommendationQuery**                                     | Query to call the [Breinify API](https://docs.breinify.com/#recommendations)                                | `object`              |                  |
+| **containerClassName**                                      | Container className to overwrite the default className (`breinify-carousel`)                                | `string`              |                  |
+| **containerStyles**                                         | Styles to pass into the carousel container                                                                  | `React.CSSProperties` |                  |
+| **onError**                                                 | A callback when `getRecs` receives an error                                                                 | `function`            | (`error`: `any`) |
+| **onButtonClick**                                           | A callback when an item in the carousel is clicked. It provides a filtered data through `getComponentProps` | `function`            | (`props`: `any`) |
+| **[component](/recommendations/carousel/carousel)**         |                                                                                                             |                       |                  |
+| **[loaderComponent](/recommendations/carousel/carousel)**   |                                                                                                             |                       |                  |
+| **[getComponentProps](/recommendations/carousel/carousel)** |                                                                                                             |                       |                  |
+| **...sliderProps**                                          | ([react-slick](https://react-slick.neostack.com/docs/api)) props                                            |                       |                  |
 
 #### Example
 ```tsx
