@@ -13,7 +13,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './carousel-styles.scss';
 
-const DefaultCarouselComponent = ({ onButtonClick, ...props }: any) => {
+const DefaultCarouselComponent = ({ onButtonClick, buttonLabel, ...props }: any) => {
 	const { title, image, description } = props;
 
 	function onClick() {
@@ -33,7 +33,7 @@ const DefaultCarouselComponent = ({ onButtonClick, ...props }: any) => {
 				</div>
 			)}
 			<div className='br-rec-footer' onClick={onClick}>
-				<div className='br-rec-button'>View Product</div>
+				<div className='br-rec-button'>{buttonLabel}</div>
 			</div>
 		</div>
 	);
@@ -73,6 +73,7 @@ export interface CarouselProps extends Settings {
 	containerClassName?: string;
 	containerStyles?: React.CSSProperties;
 	onError?(error: any): void;
+	buttonLabel?: string;
 	onButtonClick?(props: any): void;
 }
 
@@ -85,6 +86,7 @@ export default function Carousel({
 	containerStyles,
 	onButtonClick,
 	onError,
+	buttonLabel = 'View Product',
 	...sliderProps
 }: CarouselProps) {
 	const { data, getRecs, isFailure, isLoading, isSuccess, error } = useRecommendations(null);
@@ -108,7 +110,12 @@ export default function Carousel({
 				<Slider {...sliderProps}>
 					{Array.isArray(data) &&
 						data.map((each, idx) => (
-							<Component {...getComponentProps(each)} onButtonClick={onButtonClick} key={idx} />
+							<Component
+								{...getComponentProps(each)}
+								buttonLabel={buttonLabel}
+								onButtonClick={onButtonClick}
+								key={idx}
+							/>
 						))}
 				</Slider>
 			)}
