@@ -5,7 +5,7 @@
 * [getComponentProps](#getcomponentprops)
 
 ### component
-The props for your component comes from [getComponentProps](#getcomponentprops). This component renders each item in the carousel.
+A custom component that will be used to render a single item in the carousel. The props for this component are determined by [getComponentProps](#getcomponentprops).
 
 #### Example
 ```tsx
@@ -39,7 +39,7 @@ export const CarouselTest = () => {
 ```
 
 ### getComponentProps
-A function to filter props passed down to the `component`. `getComponentProps` receives all the props and filters it based on user needs.
+A prop getter function to get the props that will be passed to `component`. `getComponentProps` is called with the one parameter: the recommendation result
 > Note: If you are using our default [component](#component), `getComponentProps` should return {`title`,`image`,`description`} to utilize our styles.
 
 ```tsx
