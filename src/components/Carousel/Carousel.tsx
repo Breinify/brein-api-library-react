@@ -65,22 +65,28 @@ function defaultGetComponentProps(data: Record<string, any> = {}) {
 	};
 }
 
+function defaultSelect(response: any) {
+	return response?.result;
+}
+
 export interface CarouselProps extends Settings {
 	component?: React.ComponentType<any>;
 	loaderComponent?: React.ComponentType<any>;
 	getComponentProps?(dataResult: any): Record<string, any>;
+	selector?(response: any): any;
 	recommendationQuery: RecommendationQuery;
 	containerClassName?: string;
 	containerStyles?: React.CSSProperties;
+	onButtonClick?(props: any): void;
 	onError?(error: any): void;
 	buttonLabel?: string;
-	onButtonClick?(props: any): void;
 }
 
 export default function Carousel({
 	component: Component = DefaultCarouselComponent,
 	loaderComponent: LoaderComponent = DefaultLoaderComponent,
 	getComponentProps = defaultGetComponentProps,
+	selector = defaultSelect,
 	recommendationQuery,
 	containerClassName = 'breinify-carousel',
 	containerStyles,
@@ -92,7 +98,7 @@ export default function Carousel({
 	const { data, getRecs, isFailure, isLoading, isSuccess, error } = useRecommendations(null);
 
 	React.useEffect(() => {
-		getRecs(recommendationQuery, (response) => response.result);
+		getRecs(recommendationQuery, selector);
 	}, []);
 
 	React.useEffect(() => {
