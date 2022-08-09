@@ -156,18 +156,18 @@ getRecommendations({
 ## Carousel
 Our Carousel extends [react-slick](https://react-slick.neostack.com/docs/api).
 
-| Name                                                                                  | Description                                                                                                 | Type                  | Props            |
-|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-----------------------|------------------|
-| **recommendationQuery**                                                               | Query to call the [Breinify API](https://docs.breinify.com/#recommendations)                                | `object`              |                  |
-| **containerClassName**                                                                | Container className to overwrite the default className (`breinify-carousel`)                                | `string`              |                  |
-| **containerStyles**                                                                   | Styles to pass into the carousel container                                                                  | `React.CSSProperties` |                  |
-| **onError**                                                                           | A callback that is called whenever `getRecs` status turns to `FAILURE`                                      | `function`            | (`error`: `any`) |
-| **buttonLabel**                                                                       | Change the label name of the carousel item's button                                                         | `string`              |                  |
-| **onButtonClick**                                                                     | A callback when an item in the carousel is clicked. It provides a filtered data through `getComponentProps` | `function`            | (`props`: `any`) |
-| **[component](/docs/recommendations/carousel/carousel.md#component)**                 |                                                                                                             |                       |                  |
-| **[loaderComponent](/docs/recommendations/carousel/carousel.md#loadercomponent)**     |                                                                                                             |                       |                  |
-| **[getComponentProps](/docs/recommendations/carousel/carousel.md#getcomponentprops)** |                                                                                                             |                       |                  |
-| **...sliderProps**                                                                    | ([react-slick](https://react-slick.neostack.com/docs/api)) props                                            |                       |                  |
+| Name                                                                                  | Description                                                                                     | Type                  | Props            |
+|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|-----------------------|------------------|
+| **recommendationQuery**                                                               | Query to call the [Breinify API](https://docs.breinify.com/#recommendations)                    | `object`              |                  |
+| **containerClassName**                                                                | Container className to overwrite the default className (`breinify-carousel`)                    | `string`              |                  |
+| **containerStyles**                                                                   | Styles to pass into the carousel container                                                      | `React.CSSProperties` |                  |
+| **onError**                                                                           | A callback that is called whenever `getRecs` status turns to `FAILURE`                          | `function`            | (`error`: `any`) |
+| **buttonLabel**                                                                       | Change the label name of the carousel item's button                                             | `string`              |                  |
+| **onButtonClick**                                                                     | A callback when an item in the carousel is clicked. It provides the entire recommendation entry | `function`            | (`props`: `any`) |
+| **[component](/docs/recommendations/carousel/carousel.md#component)**                 |                                                                                                 |                       |                  |
+| **[loaderComponent](/docs/recommendations/carousel/carousel.md#loadercomponent)**     |                                                                                                 |                       |                  |
+| **[getComponentProps](/docs/recommendations/carousel/carousel.md#getcomponentprops)** |                                                                                                 |                       |                  |
+| **...sliderProps**                                                                    | ([react-slick](https://react-slick.neostack.com/docs/api)) props                                |                       |                  |
 
 #### Example
 ```tsx
