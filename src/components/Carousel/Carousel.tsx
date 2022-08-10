@@ -16,10 +16,6 @@ import './carousel-styles.scss';
 const DefaultCarouselComponent = ({ onButtonClick, buttonLabel, ...props }: any) => {
 	const { title, image, description } = props;
 
-	function onClick() {
-		if (onButtonClick instanceof Function) onButtonClick(props);
-	}
-
 	return (
 		<div className='breinify-recommendation'>
 			<div className='br-rec-content'>
@@ -32,7 +28,7 @@ const DefaultCarouselComponent = ({ onButtonClick, buttonLabel, ...props }: any)
 					<span>{description}</span>
 				</div>
 			)}
-			<div className='br-rec-footer' onClick={onClick}>
+			<div className='br-rec-footer' onClick={onButtonClick}>
 				<div className='br-rec-button'>{buttonLabel}</div>
 			</div>
 		</div>
@@ -97,6 +93,10 @@ export default function Carousel({
 }: CarouselProps) {
 	const { data, getRecs, isFailure, isLoading, isSuccess, error } = useRecommendations(null);
 
+	function onClick(data: any) {
+		if (onButtonClick instanceof Function) onButtonClick(data);
+	}
+
 	React.useEffect(() => {
 		getRecs(recommendationQuery, selector);
 	}, []);
@@ -119,7 +119,7 @@ export default function Carousel({
 							<Component
 								{...getComponentProps(each)}
 								buttonLabel={buttonLabel}
-								onButtonClick={onButtonClick}
+								onButtonClick={() => onClick(each)}
 								key={idx}
 							/>
 						))}
