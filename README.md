@@ -39,7 +39,7 @@ BreinifySetup({ apiKey, secret });
 > Note: API Key and Secret should not be shown publicly
 
 ## API
-* [Recommendations](/docs/recommendations.md)
+* [Recommendations](/docs/recommendations/recommendations.md)
 
 
 ## Further Links
