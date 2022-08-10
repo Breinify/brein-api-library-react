@@ -1,5 +1,5 @@
 {
-	"name": "brein-api-library-react",
+	"name": "breinify-react",
 	"version": "1.0.0",
 	"description": "React Library for the Breinify API",
 	"main": "dist/cjs/index.js",
@@ -16,6 +16,7 @@
 		"type": "git",
 		"url": "git+https://github.com/Breinify/brein-api-library-react.git"
 	},
+	"files": ["dist/*"],
 	"keywords": [],
 	"authors": [
 		"Alvin Kwong <alvin.kwong@breinify.com>",
