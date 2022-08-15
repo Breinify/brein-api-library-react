@@ -21,15 +21,15 @@ It is recommended to use signed messages when utilizing the react library. A sig
 #### utakxp7sm6weo5gvk7cytw==
 
 ### Installing
-The library is available on  [npm](https://www.npmjs.com/package/brein-react-api-library-react)  and can be added using:
+The library is available on  [npm](https://www.npmjs.com/package/breinify-react)  and can be added using:
 ```bash
-npm i brein-react-api-library-react --save
+npm i breinify-react
 ```
 
 ### Configuring the Library
 Whenever the library is used, it needs to be configured, i.e., the configuration defines which API key and which secret (if signed messages are enabled, i.e., `Verification Signature` is checked) to use. Please place `BreinifySetup` on the top most section of your application. <br/>**Warning: Only call BreinSetup once in your application!**
 ```tsx
-import { BreinifySetup } from 'brein-api-library-react';
+import { BreinifySetup } from 'breinify-react';
 
 const apiKey = '938D-3120-64DD-413F-BB55-6573-90CE-473A';
 const secret = 'utakxp7sm6weo5gvk7cytw==';
