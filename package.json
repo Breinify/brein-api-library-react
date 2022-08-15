@@ -16,7 +16,10 @@
 		"type": "git",
 		"url": "git+https://github.com/Breinify/brein-api-library-react.git"
 	},
-	"files": ["dist/*"],
+	"files": [
+		"dist/*",
+		"src"
+	],
 	"keywords": [],
 	"authors": [
 		"Alvin Kwong <alvin.kwong@breinify.com>",
