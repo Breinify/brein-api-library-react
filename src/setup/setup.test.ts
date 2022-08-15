@@ -72,13 +72,4 @@ describe('Setup functions', () => {
 		expect(() => Setup.BreinifySetup(ARRAY as any)).toThrow();
 		expect(() => Setup.BreinifySetup(NUMBER as any)).toThrow();
 	});
-
-	test('should throw when trying to change BreinifyGlobalConfigs', () => {
-		const Setup = require('./setup');
-		const API_KEY = 'API_KEY';
-		Setup.BreinifySetup({ apiKey: API_KEY });
-
-		expect(() => (Setup.BreinifyGlobalConfigs.apiKey = 'apiKey')).toThrow();
-		expect(() => (Setup.BreinifyGlobalConfigs.secret = 'secret')).toThrow();
-	});
 });
