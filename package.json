@@ -22,7 +22,7 @@
 		"Alvin Kwong <alvin.kwong@breinify.com>",
 		"Timothy Yue <timothy.yue@breinify.com>"
 	],
-	"license": "ISC",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/Breinify/brein-api-library-react/issues"
 	},
