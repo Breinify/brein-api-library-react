@@ -54,7 +54,7 @@ getRecs({user, unixTimestamp, signature, recommendation, recommendations}: Recom
 
 #### Example
 ```tsx
-import { useRecommendations } from "brein-api-library-react";
+import { useRecommendations } from "breinify-react";
 
 export function TestContainer() {
     const { getRecs, data, isInit, isLoading, isSuccess, isFailure, error } =
@@ -172,7 +172,7 @@ Our Carousel extends [react-slick](https://react-slick.neostack.com/docs/api).
 #### Example
 ```tsx
 import React from "react";
-import { Carousel } from "brein-api-library-react";
+import { Carousel } from "breinify-react";
 
 export const CarouselTest = () => {
   return (
