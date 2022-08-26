@@ -11,5 +11,8 @@
 		"forceConsistentCasingInFileNames": true,
 		"esModuleInterop": true,
 		"baseUrl": ".",
+		"declaration": true,
+		"outDir": "types",
+		"emitDeclarationOnly": true
 	}
 }
