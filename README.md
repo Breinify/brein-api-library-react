@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://www.breinify.com/img/Breinify_logo.png" alt="Breinify API JavaScript Library" width="250">
+</p>
+
 # Breinify’s React API Library
 
 <!-- TOC -->
