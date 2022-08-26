@@ -1,8 +1,9 @@
 {
 	"name": "breinify-react",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "React Library for the Breinify API",
 	"main": "dist/cjs/index.js",
+	"types": "dist/index.d.ts",
 	"module": "dist/esm/index.js",
 	"scripts": {
 		"build": "rollup --config",
@@ -16,7 +17,10 @@
 		"type": "git",
 		"url": "git+https://github.com/Breinify/brein-api-library-react.git"
 	},
-	"files": ["dist/*"],
+	"files": [
+		"dist/*",
+		"src"
+	],
 	"keywords": [],
 	"authors": [
 		"Alvin Kwong <alvin.kwong@breinify.com>",
@@ -73,6 +77,7 @@
 		"react-dom": "^18.0.0",
 		"react-test-renderer": "^18.0.0",
 		"rollup": "^2.75.7",
+		"rollup-plugin-dts": "^4.2.2",
 		"rollup-plugin-import-css": "^3.0.3",
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-postcss": "^4.0.2",
